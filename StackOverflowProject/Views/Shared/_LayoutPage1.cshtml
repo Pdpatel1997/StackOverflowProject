@@ -1,0 +1,89 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+
+    <title>@ViewBag.Title - StackOverflow</title>
+    <script src="~/Scripts/jquery-3.5.1.js"></script>
+    <script src="~/Scripts/umd/popper.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Styles.css" rel="stylesheet" />
+
+
+    @*@Styles.Render("~/Styles/bootstrap")
+        @Styles.Render("~/Styles/site")
+        @Scripts.Render("~/Scripts/bootstrap")*@
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-sm text-light navbar-light">
+            <a class="navbar-brand" href="#">StackOverflow </a>
+
+
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#collapsibleNavBar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="collapsibleNavBar">
+
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/home/index">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/home/about">About</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/home/Contact">Contact</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/home/Categories">Categories</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/AllQuestions">Questions</a>
+                    </li>
+
+                    @if (Session["CurrentUserName"] == null)
+                    {
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/account/login">Login</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/account/Register">Register</a>
+                        </li>
+                    }
+
+                    @if (Session["CurrentUserName"] != null)
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                                <img src="~/Images/user.png" width="20">
+                                @Session["CurrentUserName"]
+                            </a>
+                            <div class="dropdown-menu bg-info">
+                                <a class="dropdown-item" href="/account/Logout">Logout</a>
+                                <a class="dropdown-item" href="/account/Changeprofile">Change Profile</a>
+                                <a class="dropdown-item" href="/account/Changepassword">Change Password</a>
+                            </div>
+                        </li>
+
+                    }
+
+                </ul>
+            </div>
+
+            <form class="form-inline" action="/home/Search">
+                <input type="search" class="form-control mr-sm-2" style="width:150px" placeholder="Seach Box" name="str" />
+                <button class="btn btn-success"> Search </button>
+            </form>
+        </nav>
+
+        <div>
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>
