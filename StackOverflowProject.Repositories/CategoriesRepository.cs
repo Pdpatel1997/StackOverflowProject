@@ -49,7 +49,7 @@ namespace StackOverflowProject.Repositories
 
         public List<Category> GetCategories()
         {
-            List<Category> ct = db.Categories.ToList();
+            List<Category> ct = db.Categories.Distinct().ToList();
             return ct;
         }
         public List<Category> GetCategoryByCategaryID(int cid)

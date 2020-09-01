@@ -22,6 +22,7 @@ namespace StackOverflowProject
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             
+            AutoMapper 
             
         }
     }

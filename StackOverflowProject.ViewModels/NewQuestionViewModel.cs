@@ -29,5 +29,6 @@ namespace StackOverflowProject.ViewModels
 
         [Required]
         public int ViewsCount { get; set; }
+        public int VotesCount { get; set; }
     }
 }

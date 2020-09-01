@@ -12,9 +12,11 @@ namespace StackOverflowProject.Controllers
     public class HomeController : Controller
     {
         IQuestionsService qs;
-        public HomeController(IQuestionsService qs)
+        ICategoriesService cs;
+        public HomeController(IQuestionsService qs,ICategoriesService cs)
         {
             this.qs = qs;
+            this.cs = cs;   
         }
         public ActionResult Index()
         {
@@ -30,6 +32,27 @@ namespace StackOverflowProject.Controllers
         public ActionResult Contact()
         {
             return View();
+        }
+
+        public ActionResult Categories()
+        {
+            List<CategoryViewModel> cvm = this.cs.GetCategories();
+            return View(cvm);
+        }
+        [Route("AllQuestions")]
+        public ActionResult AllQuestions()
+        {
+            List<QuestionViewModel> qvm = this.qs.GetQuestions();
+            return View(qvm);
+        }
+
+        public ActionResult Search(string str)
+        {
+            List<QuestionViewModel> qvm = this.qs.GetQuestions().Where(s => s.QuestionName.ToLower().Contains(str.ToLower()) ||
+            s.category.CategoryName.ToLower().Contains(str.ToLower())).ToList();
+            ViewBag.str = str;
+                
+            return View(qvm);
         }
     }
 }

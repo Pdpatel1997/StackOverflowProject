@@ -10,19 +10,18 @@ namespace StackOverflowProject.ViewModels
 {
     public class NewAnswerViewModel
     {
-        [Required]
-        public int AnswerText { get; set; }
+        
+        
+        public string AnswerText { get; set; }
 
-        [Required]
         public DateTime AnswerDateAndTime { get; set; }
 
-        [Required]
         public int UserID { get; set; }
 
-        [Required]
+    
         public int QuestionID { get; set; }
 
-        [Required]
+        
         public int VotesCount { get; set; }
     }
 }

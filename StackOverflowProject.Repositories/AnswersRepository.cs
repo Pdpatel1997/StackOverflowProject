@@ -17,7 +17,7 @@ namespace StackOverflowProject.Repositories
         List<Answer> GetAnswersByQuestionID(int qid);
         List<Answer> GetAnswersByAnswerID(int aid);
     }
-    class AnswersRepository : IAnswersRepository
+   public  class AnswersRepository : IAnswersRepository
     {
         StackOverflowDatabaseDbContext db;
         IQuestionsRepository qr;

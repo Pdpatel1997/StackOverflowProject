@@ -1,8 +1,10 @@
-﻿using StackOverflowProject.ServiceLayer;
+﻿using Microsoft.SqlServer.Server;
+using StackOverflowProject.ServiceLayer;
 using StackOverflowProject.ViewModels;
 using System;
 using System.Web.Mvc;
 using System.Web.SessionState;
+using StackOverflowProject.CustomFilters;
 
 namespace StackOverflowProject.Controllers
 {
@@ -98,6 +100,7 @@ namespace StackOverflowProject.Controllers
             return RedirectToAction("index", "Home");
         }
 
+        [UserAuthorizationFilter]
         public ActionResult ChangeProfile()
         {
             int uid = Convert.ToInt32(Session["CurrentUserID"]);
@@ -125,6 +128,7 @@ namespace StackOverflowProject.Controllers
             }
         }
 
+        [UserAuthorizationFilter]
         public ActionResult ChangePassword()
         {
             int uid = Convert.ToInt32(Session["CurrentUserID"]);

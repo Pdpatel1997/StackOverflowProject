@@ -16,6 +16,9 @@ namespace StackOverflowProject
 
             container.RegisterType<IQuestionsService, QuestionsService>();
             container.RegisterType<IUsersService, UsersService>();
+            container.RegisterType<ICategoriesService, CategoriesService>();
+            container.RegisterType<IAnswersService, AnswersService>();
+
             DependencyResolver.SetResolver(new Unity.Mvc5.UnityDependencyResolver(container)); //enable injection for mvc5
             GlobalConfiguration.Configuration.DependencyResolver = new Unity.WebApi.UnityDependencyResolver(container); //enable injection for web api
             
